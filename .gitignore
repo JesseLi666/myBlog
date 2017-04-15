@@ -1,0 +1,6 @@
+data.sqlite
+data-dev.sqlite
+migrations/
+Scripts/
+Venv/
+app/static/pic/
