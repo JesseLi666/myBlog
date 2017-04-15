@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}我的图片{% endblock %}
+
+{% block page_content %}
+<div class="row" id="image">
+    <div class="col-md-9">
+        <div class="photo container-fluid">
+            <a href="{{ url_for('.photo_next', id=photo.id)}}" title="点击跳到下一张">
+                <img src="{{ photo.url }}" class="img-responsive">
+            </a>
+            <div class="text-left">
+                <br>
+                {% if photo.about %}
+                <p class="edit-text">
+                    {{ photo.about }}
+                    {% if current_user.is_authenticated %}
+                    <a class="edit-btn btn btn-xs btn-default">修改<i class="glyphicon glyphicon-edit"></i></a>
+                    {% endif %}
+                </p>
+                {% else %}
+                <p class="edit-text">
+                    {% if current_user.is_authenticated %}
+                    <a class="edit-btn btn btn-xs btn-default">添加描述<i class="glyphicon glyphicon-edit"></i></a>
+                    {% endif %}
+                </p>
+                {% endif %}
+                <form class="edit-form" action="{{ url_for('.save_photo_edit', id=photo.id) }}" method="POST">
+                    <textarea class="form-control" name="about" placeholder="添加描述" rows="3" cols="100%">{% if photo.about %}{{ photo.about }}{% endif %}</textarea>
+                    <br>
+                    <input class="set-btn btn btn-success" type="submit" name="submit" value="确定">
+                    <input class="cancel-btn btn btn-default" type="button" value="取消">
+                </form>
+            </div>
+            <div>
+                <br>
+                <p class="text-left">上传于{{ moment(photo.timestamp).format('L') }}</p>
+                {% if current_user.is_authenticated %}
+                <!-- Button trigger modal -->
+                <p><span class="pull-right"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    data-target="#DeleteModal">
+              删除
+            </button></span></p>
+                <!-- 删除确认弹窗 -->
+                <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                确定要删除这张图片？
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <a href="{{ url_for('.delete_photo', id=photo.id) }}">
+                                    <button type="button" class="btn btn-danger">确认</button>
+                                </a>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="info col-md-3">
+        <div class="pagination">
+            <p>
+                <a class="btn btn-default" href="{{ url_for('.photo_previous', id=photo.id)}}">上一张</a>
+                <a class="btn btn-default" href="{{ url_for('.photo_next', id=photo.id)}}">下一张</a>
+                &nbsp;第{{ photo_index }}张 / 共{{ photo_sum }}张
+            </p>
+            <p>{{ photo.url }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script>
+   $(document).ready(function () {
+       $(".edit-form").hide();
+       $(".edit-btn").click(function() {
+            $(".edit-text").hide();
+            $(".edit-form").show();
+        });
+        $(".cancel-btn").click(function() {
+            $(".edit-form").hide();
+            $(".edit-text").show();
+        });
+        $(".set-btn").click(function() {
+            $(".edit-form").hide();
+            $(".edit-text").show();
+        });
+   });
+
+
+
+</script>
+
+{% endblock %}

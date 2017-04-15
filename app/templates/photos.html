@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}我的图片{% endblock %}
+
+
+{% block page_content %}
+<div class="page-header">
+    <h1>上传照片</h1>
+
+    <div class="row text-center">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+            <form action="{{ url_for('main.add_photo') }}" class="form form-horizontal" method="POST" enctype="multipart/form-data">
+{#                {{ form.hidden_tag() }}#}
+                {{ wtf.form_field(form.photo, multiple="multiple") }}
+                {{ wtf.form_field(form.submit) }}
+            </form>
+        </div>
+    </div>
+<div>
+    <h3>
+        {% if no_pic == True %}
+        还没有照片，点击右侧按钮上传图片。
+        <br><br><br>
+        {% endif %}
+    </h3>
+</div>
+<div class="grid row">
+    {% for photo in photos %}
+    <div class="image grid-item">
+{#        {% if loop.index != 1 %}#}
+{#        <a class="hide-photo" id="firstSlide" href="{{ photo.url_s }} " data-lightbox="slide"#}
+{#           title="<br><a href={{ url_for('.photo', id=photo.id) }}>转到图片页面</a>"></a>#}
+{#        {% endif %}#}
+        <a class="thumbnail" href="{{ url_for('.photo', id=photo.id) }}" title="">
+            <img class="img-responsive" src="{{ photo.url_t }}">
+        </a>
+        <div class="info">
+            <p id="url_info" class="hidden">{{ photo.url }}</p>
+            {% if photo.about %}
+            <p class="td-nobr">{{ photo.about }}</p>
+            {% endif %}
+            <button type="button" class="btn btn-default" id="show_url">URL</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.show_photos') }}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ super()}}
+    <script src="{{ url_for('static', filename='js/isotope.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/imagesloaded.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/clipboard.min.js') }}"></script>
+    <script>
+        $('.grid').imagesLoaded( function(){
+            $('.grid').isotope({
+              itemSelector : '.grid-item',
+            });
+          });
+    </script>
+    <script>
+        $('button#show_url').click(function () {
+{#            $('p#url_info').select();#}
+{#            document.execCommand("Copy");#}
+{#            alert('success!');#}
+{#            var Url2=document.getElementById("url_info");#}
+{#            window.clipboardData.setData("Text",$('p#url_info').text());#}
+{#            alert("已复制好，可贴粘。");#}
+            var str = $(this).parent().find("p#url_info").first().text();
+{#            alert($(this).siblings('p#url_info').val());#}
+            var clipboard = new Clipboard('button#show_url', {
+                text: function() {
+                    return str;
+                }
+            });
+            clipboard.on('success', function(e) {
+                console.log(e);
+            });
+
+            clipboard.on('error', function(e) {
+                console.log(e);
+            });
+        });
+
+    </script>
+{% endblock %}

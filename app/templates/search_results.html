@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+ 
+ {% block title %}搜索 - Jessy's Blog{% endblock %}
+
+{% block page_content %}
+
+<div class="row page-content">
+    <div class="col-xs-12 col-md-9">
+        <div class="post-tabs">
+            {% if posts[0] %}
+                <h1>"{{query}}"　的搜索结果:</h1>
+                {% include '_posts.html' %}
+            {% else %}
+                <h1>未找到"{{query}}"的搜索结果，搜索范围只限于文章标题，关键词之间请以空格分隔</h1>
+            {% endif %}
+        </div>
+    </div>
+    <aside class="col-xs-12 col-md-3 sidebar">
+        {% include '_sidebar.html' %}
+    </aside>
+</div>
+
+
+{% endblock %}

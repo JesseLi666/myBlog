@@ -1,0 +1,37 @@
+{% for post in posts %}
+<article id={{ post.id }} class="post">
+    <div class="post-head">
+        <h1 class="post-title"><a href="{{ url_for('.post', id=post.id) }}">{{ post.title }}</a></h1>
+        <div class="post-author">{{ post.category.name }}</div>
+        <div class="post-meta">
+            <time class="post-date">{{ moment(post.timestamp).fromNow() }}</time>
+        </div>
+    </div>
+
+    {% if post.thumbnail_url %}
+        <div class="featured-media">
+            <a href="{{ url_for('.post', id=post.id) }}"><img src="{{ post.thumbnail_url }}"></a>
+        </div>
+    {% endif %}
+
+    <div class="post-content">
+        {% if post.abstract %}
+            {{ post.abstract | safe | truncate(200)}}
+        {% endif %}
+    </div>
+    <div class="post-permalink">
+        {% if current_user == post.author %}
+            <a href="{{ url_for('.edit', id=post.id) }}" class="btn btn-success">编辑</a>
+        {% endif %}
+        <a href="{{ url_for('.post', id=post.id) }}" class="btn btn-default">阅读全文</a>
+    </div>
+    <footer class="post-footer clearfix">
+        <div class="pull-left tag-list">
+            <i class="fa fa-folder-open-o"></i>
+
+        </div>
+        <div class="pull-right share">
+        </div>
+    </footer>
+</article>
+{% endfor %}

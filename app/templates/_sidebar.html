@@ -1,0 +1,44 @@
+{% if current_user.is_authenticated %}
+<div class="widget">
+    <a class="btn btn-success btn-lg btn-block" href="{{ url_for('main.new_post') }}" role="button">新文章</a>
+</div>
+{% endif %}
+
+<div class="widget">
+    <h4 class="title">搜索标题</h4>
+    <form action="{{ url_for('main.search') }}" method="post">
+        <div class="form-group has-success has-feedback">
+            <label class="control-label sr-only" for="inputSuccess2"></label>
+            <input type="text" class="form-control" id="inputSuccess2" name="content" aria-describedby="inputSuccess2Status">
+            <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+            <span id="inputSuccess2Status" class="sr-only">(success)</span>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+</div>
+
+<div class="widget">
+    <h4 class="title">最近文章</h4>
+    <ul>
+        {% for p in latest_posts %}
+        <li>
+            <a href="{{ url_for('.post', id=p.id) }}">
+                <p>{{ p.title }}</p>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="widget">
+    <h4 class="title">我的栏目</h4>
+    <ul>
+        {% for c in latest_categories %}
+        <li>
+            <a href="{{ url_for('.category', id=c.id) }}">
+                <p>{{ c.name }}</p>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Edit Category - Jesse's Blog{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    <div class="page-header">
+        <h1>编辑栏目</h1>
+    </div>
+    <div>
+        {{ wtf.quick_form(form) }}
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}{{ post.title }} - Jesse's Blog{% endblock %}
+
+{% block page_content %}
+<div class="row page-content">
+    <div class="col-xs-12 col-md-9">
+        <div class="post-tabs">
+            {% include '_post.html' %}
+        </div>
+    </div>
+    <aside class="col-xs-12 col-md-3 sidebar">
+        {% include '_sidebar.html' %}
+    </aside>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+    <script>
+    $(".post-body img").addClass('img-responsive');
+    </script>
+{% endblock %}

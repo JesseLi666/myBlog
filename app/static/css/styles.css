@@ -1,0 +1,330 @@
+body {
+  color: #505050;
+  line-height: 1.75em;
+  background: #ebebeb;
+  position: relative;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+}
+
+.profile-thumbnail {
+    position: absolute;
+}
+.profile-header {
+    min-height: 260px;
+    margin-left: 280px;
+}
+div.post-tabs {
+    margin-top: 16px;
+}
+ul.posts {
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+div.post-tabs ul.posts {
+    margin: 0px;
+    border-top: none;
+}
+ul.posts li.post {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.posts li.post:hover {
+    background-color: #f0f0f0;
+}
+div.post-date {
+    float: right;
+}
+div.post-author {
+    font-weight: bold;
+}
+div.post-thumbnail {
+    position: absolute;
+}
+div.post-content {
+    margin-left: 48px;
+    min-height: 48px;
+}
+
+div.post-title {
+    margin-left: 48px;
+    min-height: 48px;
+    padding-bottom: 9px;
+}
+div.post-footer {
+    text-align: right;
+}
+ul.comments {
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+}
+ul.comments li.comment {
+    margin-left: 32px;
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.comments li.comment:nth-child(1) {
+    border-top: 1px solid #e0e0e0;
+}
+ul.comments li.comment:hover {
+    background-color: #f0f0f0;
+}
+div.comment-date {
+    float: right;
+}
+div.comment-author {
+    font-weight: bold;
+}
+div.comment-thumbnail {
+    position: absolute;
+}
+div.comment-content {
+    margin-left: 48px;
+    min-height: 48px;
+}
+div.comment-form {
+    margin: 16px 0px 16px 32px;
+}
+div.pagination {
+    width: 100%;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+}
+div.flask-pagedown-preview {
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #e0e0e0;
+    padding: 4px;
+}
+div.flask-pagedown-preview h1 {
+    font-size: 140%;
+}
+div.flask-pagedown-preview h2 {
+    font-size: 130%;
+}
+div.flask-pagedown-preview h3 {
+    font-size: 120%;
+}
+.post-body h1 {
+    font-size: 140%;
+}
+.post-body h2 {
+    font-size: 130%;
+}
+.post-body h3 {
+    font-size: 120%;
+}
+.table.followers tr {
+    border-bottom: 1px solid #e0e0e0;
+}
+/*sidebar*/
+.sidebar{
+    margin-top: 16px;
+}
+
+.sidebar .widget {
+  background: #ffffff;
+  padding: 21px 30px;
+}
+.main-footer .widget {
+  padding: 0px 30px;
+}
+.widget {
+  margin-bottom: 35px;
+}
+.widget .title {
+  margin-top: 0;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 21px;
+  position: relative;
+}
+.widget .title:after {
+  content: "";
+  width: 90px;
+  height: 1px;
+  background: #f4645f;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+}
+.widget .recent-post .recent-single-post {
+  border-bottom: 1px dashed #ebebeb;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+}
+.widget .recent-post .recent-single-post:last-child {
+  margin-bottom: 0;
+}
+.widget .recent-post .recent-single-post .post-title {
+  color: #505050;
+  -webkit-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.widget .recent-post .recent-single-post .post-title:hover {
+  color: #f4645f;
+  text-decoration: none;
+}
+.widget .recent-post .recent-single-post .date {
+  color: #959595;
+}
+.widget .tag-cloud a {
+  border: 1px solid #ebebeb;
+  padding: 2px 7px;
+  color: #959595;
+  line-height: 1.5em;
+  display: inline-block;
+  margin: 0 7px 7px 0;
+  -webkit-transition: all 0.2s ease;
+       -o-transition: all 0.2s ease;
+          transition: all 0.2s ease;
+}
+.widget .tag-cloud a:hover {
+  color: #ffffff;
+  background: #f4645f;
+  border: 1px solid #f4645f;
+  text-decoration: none;
+}
+.widget .social {
+  padding: 0;
+  margin: 0;
+}
+.widget .social li {
+  display: inline-block;
+  margin: 0 2px 5px 0;
+  text-align: center;
+}
+.widget .social li a i {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  border: 1px solid #ebebeb;
+  color: #959595;
+  -webkit-transition: all 0.2s;
+       -o-transition: all 0.2s;
+          transition: all 0.2s;
+}
+.widget .social li:hover i {
+  color: #ffffff;
+  background: #f4645f;
+  border: 1px solid #f4645f;
+}
+.widget .newsletter .input-group {
+  margin-bottom: 10px;
+  display: block;
+}
+.widget .newsletter .input-group .email,
+.widget .newsletter .input-group btn {
+  width: 100%;
+}
+.widget .ad {
+  text-align: center;
+}
+.widget .ad img {
+  max-width: 100%;
+}
+
+/* post */
+/*====================================================
+	main post area
+====================================================*/
+.post {
+  padding: 35px;
+  background: #ffffff;
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+}
+.post .featured {
+  position: absolute;
+  background: #f4645f;
+  color: #ffffff;
+  text-align: center;
+  top: -12px;
+  right: -32px;
+  width: 80px;
+  height: 40px;
+  line-height: 54px;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.post .featured i {
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.post .post-head {
+  text-align: center;
+}
+.post .post-head .post-title {
+  margin: 0;
+  font-size: 2.0em;
+  line-height: 1.2em;
+}
+.post .post-head .post-title a {
+  color: #303030;
+}
+.post .post-head .post-title a:hover,
+.post .post-head .post-title a:focus {
+  text-decoration: none;
+}
+.post .post-head .post-meta {
+  color: #959595;
+  margin: 14px 0 0px;
+}
+.post .post-head .post-meta span {
+  margin: 0px 7px;
+  white-space: nowrap;
+}
+.post .featured-media {
+  margin-top: 30px;
+  overflow: hidden;
+}
+.post .featured-media img {
+  width: 100%;
+}
+.post .post-content {
+  margin: 30px 0;
+}
+.post .post-footer {
+  margin-top: 30px;
+  border-top: 1px solid #ebebeb;
+  padding: 21px 0 0;
+}
+.post .post-footer .tag-list {
+  color: #959595;
+  line-height: 28px;
+}
+.post .post-footer .tag-list a {
+  color: #959595;
+  margin-left: 7px;
+}
+.post .post-footer .tag-list a:hover {
+  color: #f4645f;
+}
+/* post content */
+
+.image {
+    margin: 10px;
+    margin-bottom: 20px;
+    width: 270px;
+}
+
+.td-nobr{
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.page-content{
+    margin-top: 50px;
+}

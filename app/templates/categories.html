@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}栏目列表 - Jesse's Blog{% endblock %}
+
+{% block page_content %}
+<div class="row page-content">
+    <div class="col-xs-12 col-md-9">
+        <div class="post-tabs">
+            {% for c in categories %}
+            <article id={{ c.id }} class="post">
+                <div class="post-head">
+                    <h1 class="post-title"><a href="{{ url_for('.category', id=c.id) }}">{{ c.name }}</a></h1>
+                    <div class="post-meta">
+                        <time class="post-date">{{ moment(c.timestamp).fromNow() }}</time>
+                    </div>
+                </div>
+
+                {% if c.thumbnail_url %}
+                    <div class="featured-media">
+                        <a href="{{ url_for('.category', id=c.id) }}"><img src="{{ c.thumbnail_url }}"></a>
+                    </div>
+                {% endif %}
+
+                <div class="post-content">
+                    {% if c.abstract %}
+                        {{ c.abstract | safe }}
+                    {% endif %}
+                </div>
+                <div class="post-permalink">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('.edit_category', id=c.id) }}" class="btn btn-success">编辑</a>
+                    {% endif %}
+                    <a href="{{ url_for('.category', id=c.id) }}" class="btn btn-default">全部文章</a>
+                </div>
+                <footer class="post-footer clearfix">
+                    <div class="pull-left tag-list">
+                        <i class="fa fa-folder-open-o"></i>
+
+                    </div>
+                    <div class="pull-right share">
+                    </div>
+                </footer>
+            </article>
+            {% endfor %}
+        </div>
+
+        {% if pagination %}
+        <div class="pagination">
+            {{ macros.pagination_widget(pagination, '.index') }}
+        </div>
+        {% endif %}
+    </div>
+    <aside class="col-xs-12 col-md-3 sidebar">
+        {% if current_user.is_authenticated %}
+            <div class="widget">
+                <a class="btn btn-success btn-lg btn-block" href="{{ url_for('main.new_category') }}" role="button">新栏目</a>
+            </div>
+        {% endif %}
+        {% include '_sidebar.html' %}
+    </aside>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+    <script>
+    $(".post-body img").addClass('img-responsive');
+    </script>
+{% endblock %}
